@@ -1,17 +1,24 @@
-""" Generate tests for code """
+""" CodeIQ ai command """
 
 from typing import Annotated, Optional
 import typer
 from huggingface_hub import InferenceClient
 from rich import print
-from code_star_cli import CHAT_LLM, SYSTEM_MESSAGE, create_panel
+from code_iq import CHAT_LLM, SYSTEM_MESSAGE, create_panel
 
 
-def test(
+def ai(
+    prompt: Annotated[str, typer.Argument(help="Prompt or Instruction.")],
     code: Annotated[
-        typer.FileText,
-        typer.Argument(help="File containing code to generate tests for."),
-    ],
+        Optional[typer.FileText],
+        typer.Option(
+            "--code",
+            "-c",
+            exists=True,
+            help="Code file to include in the prompt.",
+            encoding="utf-8",
+        ),
+    ] = None,
     output: Annotated[
         Optional[typer.FileTextWrite],
         typer.Option(
@@ -31,12 +38,14 @@ def test(
     ] = 2048,
 ) -> None:
     """
-    Generate tests for the provided code.
+    Initiates AI-related functionalities, such as generating code snippets,
+    providing AI-driven suggestions, or performing tasks.
 
     Examples:
     ```shell
-    code-star test code.py
-    code-star test code.py -o code-tests.md
+    code-iq ai "Generate a function to calculate the area of a circle"
+    code-iq ai -c code.py "Explain the code"
+    code-iq ai -o output.md "How to install HuggingFace Transformers?"
     ```
     """
 
@@ -48,13 +57,9 @@ def test(
                 SYSTEM_MESSAGE,
                 {
                     "role": "user",
-                    "content": "As a an expert software engineer and quality assurance engineer "
-                    "that puts code into production in large scale systems. Your job is to ensure "
-                    "that code runs effectively, quickly, at scale, and securely. Please generate tests "
-                    "for the provided code, including any potential issues or improvements that could be made, "
-                    "and provide the updated code with the tests included. The tests should cover edge cases, "
-                    "error handling, and any other relevant information that could help with the code's functionality:"
-                    f"{code.read()}",
+                    "content": (
+                        f"{prompt}:\n```\n{code.read()}\n```" if code else prompt
+                    ),
                 },
             ],
             max_tokens=max_tokens,
@@ -67,7 +72,7 @@ def test(
             print(f"Output [bold green]saved[/bold green] to {output.name}.")
 
         else:
-            print(create_panel("CodeStar", str(response.choices[0].message.content)))
+            print(create_panel("CodeIQ", str(response.choices[0].message.content)))
 
     except Exception as error:
         print(f"[bold red]Error[/bold red]: {error}")

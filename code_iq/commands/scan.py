@@ -1,24 +1,17 @@
-""" Natural language interactions like command generation """
+""" CodeIQ scan command """
 
 from typing import Annotated, Optional
 import typer
 from huggingface_hub import InferenceClient
 from rich import print
-from code_star_cli import CHAT_LLM, SYSTEM_MESSAGE, create_panel
+from code_iq import CHAT_LLM, SYSTEM_MESSAGE, create_panel
 
 
-def ai(
-    prompt: Annotated[str, typer.Argument(help="Natural language prompt.")],
+def scan(
     code: Annotated[
-        Optional[typer.FileText],
-        typer.Option(
-            "--code",
-            "-c",
-            exists=True,
-            help="Code file to include in the prompt.",
-            encoding="utf-8",
-        ),
-    ] = None,
+        typer.FileText,
+        typer.Argument(help="File containing code to scan for vulnerabilities."),
+    ],
     output: Annotated[
         Optional[typer.FileTextWrite],
         typer.Option(
@@ -38,13 +31,13 @@ def ai(
     ] = 2048,
 ) -> None:
     """
-    Interact with CodeStar using natural language.
+    Performs scans of codebases to identify vulnerabilities, bugs, or areas
+    that need attention, ensuring code quality and security.
 
     Examples:
     ```shell
-    code-star ai "Generate a function to calculate the area of a circle"
-    code-star ai -c code.py "Explain the code"
-    code-star ai -o output.md "How to install HuggingFace Transformers?"
+    code-iq scan code.py
+    code-iq scan code.py -o code-scan.md
     ```
     """
 
@@ -56,9 +49,11 @@ def ai(
                 SYSTEM_MESSAGE,
                 {
                     "role": "user",
-                    "content": (
-                        f"{prompt}:\n```\n{code.read()}\n```" if code else prompt
-                    ),
+                    "content": "As a an expert software engineer and cybersecurity engineer "
+                    "that puts code into production in large scale systems. Your job is to ensure "
+                    "that code runs effectively, quickly, at scale, and securely. Please perform a "
+                    "code scan to identify potential security vulnerabilities in the provided code:"
+                    f"\n{code.read()}",
                 },
             ],
             max_tokens=max_tokens,
@@ -71,7 +66,7 @@ def ai(
             print(f"Output [bold green]saved[/bold green] to {output.name}.")
 
         else:
-            print(create_panel("CodeStar", str(response.choices[0].message.content)))
+            print(create_panel("CodeIQ", str(response.choices[0].message.content)))
 
     except Exception as error:
         print(f"[bold red]Error[/bold red]: {error}")

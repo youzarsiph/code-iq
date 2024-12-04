@@ -1,11 +1,11 @@
-""" Chat with CodeStar """
+""" CodeIQ chat command """
 
 import json
 from typing import Annotated, Optional
 import typer
 from huggingface_hub import InferenceClient
 from rich import print
-from code_star_cli import CHAT_LLM, SYSTEM_MESSAGE, create_panel
+from code_iq import CHAT_LLM, SYSTEM_MESSAGE, create_panel
 
 
 def chat(
@@ -37,21 +37,22 @@ def chat(
     ] = 2048,
 ) -> None:
     """
-    Engage in a chat session with CodeStar.
+    Enables interactive chat capabilities, allowing users to engage in real-time conversations
+    with the assistant for troubleshooting, guidance, or general inquiries.
 
     Examples:
     ```shell
     # Star chatting
-    code-star chat --
+    code-iq chat --
 
     # Export chat history
-    code-star chat -e chat_history.json
+    code-iq chat -e chat_history.json
 
     # Import chat history
-    code-star chat -h chat_history.json
+    code-iq chat -h chat_history.json
 
     # Import chat history then export it after the chat session
-    code-star chat -h chat_history.json -e chat_history.json
+    code-iq chat -h chat_history.json -e chat_history.json
     ```
     """
 
@@ -64,7 +65,7 @@ def chat(
 
     print(
         create_panel(
-            "CodeStar",
+            "CodeIQ",
             "Hi, how I can assist you today?",
             "Type 'exit' or 'quit' to end the chat.",
         )
@@ -72,7 +73,7 @@ def chat(
 
     while True:
         message = typer.prompt(
-            typer.style("You", fg=typer.colors.MAGENTA, bold=True),
+            typer.style("You", fg=typer.colors.GREEN, bold=True),
             type=str,
         )
 
@@ -87,7 +88,7 @@ def chat(
 
             messages.append({"role": "assistant", "content": llm_message})
 
-            print(create_panel("CodeStar", llm_message))
+            print(create_panel("CodeIQ", llm_message))
 
         except Exception as error:
             print(f"[bold red]Error[/bold red]: {error}")
@@ -97,7 +98,7 @@ def chat(
 
     if not export:
         export_requested: bool = typer.prompt(
-            "CodeStar: Do you want to save this chat?",
+            "CodeIQ: Do you want to save this chat?",
             type=bool,
             default=False,
             show_default=True,

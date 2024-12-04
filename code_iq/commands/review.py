@@ -1,18 +1,16 @@
-""" Improve code quality """
+""" CodeIQ review command """
 
 from typing import Annotated, Optional
 import typer
 from huggingface_hub import InferenceClient
 from rich import print
-from code_star_cli import CHAT_LLM, SYSTEM_MESSAGE, create_panel
+from code_iq import CHAT_LLM, SYSTEM_MESSAGE, create_panel
 
 
-def enhance(
+def review(
     code: Annotated[
         typer.FileText,
-        typer.Argument(
-            help="File containing code to enhance for quality improvements."
-        ),
+        typer.Argument(help="File containing code to review for quality improvements."),
     ],
     output: Annotated[
         Optional[typer.FileTextWrite],
@@ -33,12 +31,13 @@ def enhance(
     ] = 2048,
 ) -> None:
     """
-    Improve code quality by applying best practices and enhancements suggested by CodeStar.
+    Conducts code reviews, analyzing code for potential issues,
+    adherence to coding standards, and providing feedback for improvements.
 
     Examples:
     ```shell
-    code-star enhance code.py
-    code-star enhance code.py -o code-enhancements.md
+    code-iq review code.py
+    code-iq review code.py -o code-review.md
     ```
     """
 
@@ -52,10 +51,9 @@ def enhance(
                     "role": "user",
                     "content": "As a an expert software engineer and site reliability engineer "
                     "that puts code into production in large scale systems. Your job is to ensure "
-                    "that code runs effectively, quickly, at scale, and securely. Please profile it, "
-                    "and find any issues that need to be fixed or updated. Also apply best practices, "
-                    "enhancements, and industry standards to the provided code to make it more efficient, "
-                    f"secure, and maintainable:\n{code.read()}",
+                    "that code runs effectively, quickly, at scale, and securely. Please review and "
+                    "analyze code quality and adherence to best practices, providing developers with "
+                    f"suggestions for improvement:\n{code.read()}",
                 },
             ],
             max_tokens=max_tokens,
@@ -68,7 +66,7 @@ def enhance(
             print(f"Output [bold green]saved[/bold green] to {output.name}.")
 
         else:
-            print(create_panel("CodeStar", str(response.choices[0].message.content)))
+            print(create_panel("CodeIQ", str(response.choices[0].message.content)))
 
     except Exception as error:
         print(f"[bold red]Error[/bold red]: {error}")

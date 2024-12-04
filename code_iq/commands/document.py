@@ -1,16 +1,16 @@
-""" Perform code scanning """
+""" CodeIQ document command """
 
 from typing import Annotated, Optional
 import typer
 from huggingface_hub import InferenceClient
 from rich import print
-from code_star_cli import CHAT_LLM, SYSTEM_MESSAGE, create_panel
+from code_iq import CHAT_LLM, SYSTEM_MESSAGE, create_panel
 
 
-def scan(
+def document(
     code: Annotated[
         typer.FileText,
-        typer.Argument(help="File containing code to scan for vulnerabilities."),
+        typer.Argument(help="File containing code to add documentation."),
     ],
     output: Annotated[
         Optional[typer.FileTextWrite],
@@ -31,12 +31,13 @@ def scan(
     ] = 2048,
 ) -> None:
     """
-    Scan the provided code for security vulnerabilities to provide suggestions on how to improve it.
+    Assists in generating, formatting, and managing documentation, including code comments,
+    README files, and technical documentation.
 
     Examples:
     ```shell
-    code-star scan code.py
-    code-star scan code.py -o code-scan.md
+    code-iq document code.py
+    code-iq document code.py -o code-docs.md
     ```
     """
 
@@ -48,11 +49,14 @@ def scan(
                 SYSTEM_MESSAGE,
                 {
                     "role": "user",
-                    "content": "As a an expert software engineer and cybersecurity engineer "
+                    "content": "As a an expert software engineer and site reliability engineer "
                     "that puts code into production in large scale systems. Your job is to ensure "
-                    "that code runs effectively, quickly, at scale, and securely. Please perform a "
-                    "code scan to identify potential security vulnerabilities in the provided code:"
-                    f"\n{code.read()}",
+                    "that code runs effectively, quickly, at scale, and securely. Please document the "
+                    "provided code, including any potential issues or improvements that could be made, "
+                    "and provide the updated code with the documentation included. The documentation "
+                    "should include docstrings, comments, and any other relevant information that could "
+                    "help developers better understand the code's purpose, functionality, and behavior:\n"
+                    f"{code.read()}",
                 },
             ],
             max_tokens=max_tokens,
@@ -65,7 +69,7 @@ def scan(
             print(f"Output [bold green]saved[/bold green] to {output.name}.")
 
         else:
-            print(create_panel("CodeStar", str(response.choices[0].message.content)))
+            print(create_panel("CodeIQ", str(response.choices[0].message.content)))
 
     except Exception as error:
         print(f"[bold red]Error[/bold red]: {error}")

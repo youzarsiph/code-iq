@@ -1,13 +1,13 @@
-""" Generate code completions """
+""" CodeIQ complete command """
 
 from typing import Annotated, Optional
 import typer
 from huggingface_hub import InferenceClient
 from rich import print
-from code_star_cli import COMPLETION_LLM, create_panel
+from code_iq import COMPLETION_LLM, create_panel
 
 
-def completions(
+def complete(
     code: Annotated[str, typer.Argument(help="Code snippet to complete.")],
     language: Annotated[
         Optional[str],
@@ -36,13 +36,14 @@ def completions(
     ] = 128,
 ) -> None:
     """
-    Generate code completions based on the provided code snippet.
+    Provides code completion features, offering suggestions to complete partially
+    written code based on context and best practices.
 
     Examples:
     ```shell
-    code-star completions 'def hello_world():'
-    code-star completions -l python 'def hello_world():'
-    code-star completions -o code-completions.md 'def hello_world():'
+    code-iq completions 'def hello_world():'
+    code-iq completions -l python 'def hello_world():'
+    code-iq completions -o code-completions.md 'def hello_world():'
     ```
     """
 
@@ -63,7 +64,7 @@ def completions(
         else:
             print(
                 create_panel(
-                    "CodeStar", f"```{language if language else ''}\n{code + response}"
+                    "CodeIQ", f"```{language if language else ''}\n{code + response}"
                 )
             )
 

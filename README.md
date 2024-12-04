@@ -1,226 +1,275 @@
-# CodeStar CLI: An AI-Powered Development Tool for Enhanced Productivity
+# CodeIQ: A Next-Generation AI-Powered Development Assistant
 
-![CI](https://github.com/youzarsiph/code-star-cli/actions/workflows/ci.yml/badge.svg)
-![CD](https://github.com/youzarsiph/code-star-cli/actions/workflows/cd.yml/badge.svg)
-![Black](https://github.com/youzarsiph/code-star-cli/actions/workflows/black.yml/badge.svg)
-![Ruff](https://github.com/youzarsiph/code-star-cli/actions/workflows/ruff.yml/badge.svg)
-[![PyPI - Version](https://img.shields.io/pypi/v/code-star-cli?logo=pypi&logoColor=white)](https://pypi.org/project/code-star-cli/)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/code-star-cli?logo=python&logoColor=white)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/code-star-cli?logo=pypi&logoColor=white)
-![PyPI - Format](https://img.shields.io/pypi/format/code-star-cli?logo=pypi&logoColor=white)
-![PyPI - Implementation](https://img.shields.io/pypi/implementation/code-star-cli?logo=pypi&logoColor=white)
-![PyPI - License](https://img.shields.io/pypi/l/code-star-cli?logo=pypi&logoColor=white)
+![CI](https://github.com/youzarsiph/code-iq/actions/workflows/ci.yml/badge.svg)
+![CD](https://github.com/youzarsiph/code-iq/actions/workflows/cd.yml/badge.svg)
+![Black](https://github.com/youzarsiph/code-iq/actions/workflows/black.yml/badge.svg)
+![Ruff](https://github.com/youzarsiph/code-iq/actions/workflows/ruff.yml/badge.svg)
+[![PyPI - Version](https://img.shields.io/pypi/v/code-iq?logo=pypi&logoColor=white)](https://pypi.org/project/code-iq/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/code-iq?logo=python&logoColor=white)](https://pypi.org/project/code-iq/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/code-iq?logo=pypi&logoColor=white)](https://pypi.org/project/code-iq/)
+[![PyPI - Format](https://img.shields.io/pypi/format/code-iq?logo=pypi&logoColor=white)](https://pypi.org/project/code-iq/)
+[![PyPI - Implementation](https://img.shields.io/pypi/implementation/code-iq?logo=pypi&logoColor=white)](https://pypi.org/project/code-iq/)
+[![PyPI - License](https://img.shields.io/pypi/l/code-iq?logo=pypi&logoColor=white)](https://pypi.org/project/code-iq/)
 
 ## Overview
 
-Welcome to the CodeStar CLI, a cutting-edge AI-powered development tool designed to elevate your coding efficiency and productivity. By leveraging the capabilities of StarCoder 2, a sophisticated Large Language Model (LLM) tailored for coding tasks, CodeStar offers AI-driven code completions, natural language interaction, extensive multi-language support, and seamless integration into your development workflow.
+CodeIQ is an advanced AI-powered command-line interface (CLI) tool designed to enhance coding efficiency and productivity. Utilizing the sophisticated capabilities of Qwen2.5-Coder-32B-Instruct, CodeIQ offers intelligent code completions, error detection, and automated coding functionalities. This empowers developers to streamline their workflows with precision and ease, making it an invaluable resource for professionals at all levels.
 
 ## Key Features
 
-- **Contextual Code Completions**: Receive precise and contextually relevant code suggestions, accelerating your development process with minimal errors.
-- **Natural Language Understanding**: Engage with CodeStar using natural language for detailed explanations, debugging tips, and guidance.
-- **Multi-Language Support**: Write and run code in over 100 programming languages effortlessly with CodeStar's integration.
-- **Continuous Learning**: CodeStar continuously learns from your usage data to provide increasingly personalized and timely insights, enhancing your coding experience.
+- **Contextual Code Completions**: Receive accurate, contextually relevant code suggestions to accelerate development with minimal errors.
+- **Natural Language Interaction**: Engage with CodeIQ using natural language for detailed explanations, debugging tips, and guidance.
+- **Multi-Language Support**: Seamlessly write and execute code in over 100 programming languages with CodeIQ's comprehensive integration.
+- **Personalized Learning**: Continuously improve recommendations based on user interactions, providing personalized and immediate insights.
 
-## Installation
+## Getting Started
 
-CodeStar CLI can be easily installed using pip:
+### Prerequisites
 
-```shell
-pip install code-star-cli
+- **Python**: CodeIQ requires Python 3.10 or higher. Ensure you have the correct version installed.
+- **Hugging Face Token**: Create an account on [Hugging Face](https://huggingface.co/) and obtain an API token.
+
+### Installation
+
+To install CodeIQ, execute the following command:
+
+```bash
+pip install code-iq
 ```
 
-After installation, set your `HF_TOKEN` as an environment variable. You can obtain your token from HuggingFace's [Settings page](https://huggingface.co/settings/tokens):
+Ensure that your Hugging Face token is set as an environment variable:
 
-- **Shell**:
+- **Unix-based Systems (Linux, macOS):**
 
-  ```shell
+  ```bash
   export HF_TOKEN=hf_your_token_here
   ```
 
-- **PowerShell**:
+- **Windows (PowerShell):**
 
   ```powershell
   $env:HF_TOKEN = "hf_your_token_here"
   ```
 
-## Usage Instructions
+## Usage
 
-### General Usage
+Launch CodeIQ with the following command:
 
 ```console
-code-star [OPTIONS] COMMAND [ARGS]...
+code-iq [OPTIONS] COMMAND [ARGS]...
 ```
 
 ### Options
 
-- `--install-completion`: Install shell completion for CodeStar.
-- `--show-completion`: Show shell completion setup instructions.
+- `--install-completion`: Install shell completion for CodeIQ.
+- `--show-completion`: Display the completion script for the current shell.
 - `--help`: Display this help message and exit.
 
 ### Commands
 
-- `ai`: Interact with CodeStar using natural language.
-- `chat`: Initiate a chat session with CodeStar.
-- `completions`: Generate code completions from snippets.
-- `document`: Add comprehensive documentation to provided code.
-- `enhance`: Improve code quality according to best practices.
-- `review`: Conduct detailed code reviews to identify areas for improvement.
-- `scan`: Analyze code for security vulnerabilities.
-- `test`: Generate tests for the provided code.
+- `ai`: Utilize AI-driven functionalities to generate code, obtain explanations, and perform tasks.
+- `chat`: Enable real-time conversations for troubleshooting, guidance, and inquiries.
+- `complete`: Receive code completion suggestions based on context and best practices.
+- `document`: Assist in generating and formatting documentation.
+- `enhance`: Apply optimizations or improvements to code.
+- `review`: Conduct thorough code reviews for quality and adherence to standards.
+- `scan`: Identify vulnerabilities and potential issues within codebases.
+- `test`: Facilitate the creation and execution of tests.
 
-### Command Details
+#### `code-iq ai`
 
-#### `code-star ai`
+Leverage AI functionalities to generate code snippets, obtain suggestions, and perform tasks.
 
-Interact with CodeStar using natural language prompts.
+**Examples:**
 
-**Usage**:
-
-```console
-code-star ai [OPTIONS] PROMPT
+```bash
+code-iq ai "Generate a function to calculate the area of a circle"
+code-iq ai -c code.py "Explain the code"
+code-iq ai -o output.md "How to install HuggingFace Transformers?"
 ```
 
-**Options**:
-
-- `PROMPT`: Required natural language prompt.
-- `-c, --code FILENAME`: Include a specific code file in the prompt.
-- `-o, --output FILENAME`: Specify an output file to write the response.
-- `-t, --max-tokens INTEGER`: Limit the maximum tokens in the response. Default is 2048.
-- `--help`: Display help message.
-
-#### `code-star chat`
-
-Initiate a chat session with CodeStar, with options to import and export chat history.
-
-**Usage**:
+**Usage:**
 
 ```console
-code-star chat [OPTIONS]
+code-iq ai [OPTIONS] PROMPT
 ```
 
-**Options**:
+**Arguments:**
 
-- `-e, --export FILENAME`: Export chat history to a file.
-- `-h, --history FILENAME`: Import previous chat history from a file.
-- `-t, --max-tokens INTEGER`: Set the maximum tokens in the response. Default is 2048.
-- `--help`: Display help message.
+- `PROMPT`: The prompt or instruction for the AI. [required]
 
-#### `code-star completions`
+**Options:**
 
-Generate code completions based on the provided code snippet.
+- `-c, --code FILENAME`: Include a code file in the prompt.
+- `-o, --output FILENAME`: Write the response to this file.
+- `-t, --max-tokens INTEGER`: Limit the number of tokens in the response. [Default: 2048]
+- `--help`: Display this help message and exit.
 
-**Usage**:
+#### `code-iq chat`
+
+Engage in real-time conversations for troubleshooting, guidance, or general inquiries.
+
+**Examples:**
+
+```bash
+# Start a chat session
+code-iq chat
+
+# Export chat history
+code-iq chat -e chat_history.json
+
+# Import chat history
+code-iq chat -h chat_history.json
+
+# Import chat history and export after session
+code-iq chat -h chat_history.json -e chat_history.json
+```
+
+**Usage:**
 
 ```console
-code-star completions [OPTIONS] CODE
+code-iq chat [OPTIONS]
 ```
 
-**Options**:
+**Options:**
 
-- `CODE`: Required code snippet to complete.
-- `-l, --lang TEXT`: Specify the language of the code snippet.
-- `-o, --output FILENAME`: Output the response to a file.
-- `-t, --max-tokens INTEGER`: Set the maximum tokens in the response. Default is 128.
-- `--help`: Display help message.
+- `-e, --export FILENAME`: Export the chat history to this file.
+- `-h, --history FILENAME`: Import a previous chat history from this file.
+- `-t, --max-tokens INTEGER`: Limit the number of tokens in the response. [Default: 2048]
+- `--help`: Display this help message and exit.
 
-#### `code-star document`
+#### `code-iq complete`
 
-Add comprehensive documentation to the provided code.
+Receive suggestions to complete partially written code based on context and best practices.
 
-**Usage**:
+**Examples:**
+
+```bash
+code-iq complete 'def hello_world():'
+code-iq complete -l python 'def hello_world():'
+code-iq complete -o code-completions.md 'def hello_world():'
+```
+
+**Usage:**
 
 ```console
-code-star document [OPTIONS] CODE
+code-iq complete [OPTIONS] CODE
 ```
 
-**Options**:
+**Arguments:**
 
-- `CODE`: Required file containing code to document.
-- `-o, --output FILENAME`: Output the response to a file.
-- `-t, --max-tokens INTEGER`: Set the maximum tokens in the response. Default is 2048.
-- `--help`: Display help message.
+- `CODE`: The code snippet for which to receive completions. [required]
 
-#### `code-star enhance`
+**Options:**
 
-Enhance code quality using best practices suggested by CodeStar.
+- `-l, --lang TEXT`: Specify the programming language of the code snippet.
+- `-o, --output FILENAME`: Write the response to this file.
+- `-t, --max-tokens INTEGER`: Limit the number of tokens in the response. [Default: 128]
+- `--help`: Display this help message and exit.
 
-**Usage**:
+#### `code-iq document`
+
+Generate and manage code documentation, including comments, README files, and technical documentation.
+
+**Examples:**
+
+```bash
+code-iq document code.py
+code-iq document code.py -o code-docs.md
+```
+
+**Usage:**
 
 ```console
-code-star enhance [OPTIONS] CODE
+code-iq document [OPTIONS] CODE
 ```
 
-**Options**:
+**Arguments:**
 
-- `CODE`: Required file containing code to enhance.
-- `-o, --output FILENAME`: Output the response to a file.
-- `-t, --max-tokens INTEGER`: Set the maximum tokens in the response. Default is 2048.
-- `--help`: Display help message.
+- `CODE`: The code file for which to generate documentation. [required]
 
-#### `code-star review`
+**Options:**
 
-Perform a detailed code review to analyze quality and adhere to best practices.
+- `-o, --output FILENAME`: Write the response to this file.
+- `-t, --max-tokens INTEGER`: Limit the number of tokens in the response. [Default: 2048]
+- `--help`: Display this help message and exit.
 
-**Usage**:
+#### `code-iq enhance`
+
+Apply improvements or optimizations to existing code, including refactoring and performance tuning.
+
+**Examples:**
+
+```bash
+code-iq enhance code.py
+code-iq enhance code.py -o code-enhancements.md
+```
+
+**Usage:**
 
 ```console
-code-star review [OPTIONS] CODE
+code-iq enhance [OPTIONS] CODE
 ```
 
-**Options**:
+**Arguments:**
 
-- `CODE`: Required file containing code to review.
-- `-o, --output FILENAME`: Output the response to a file.
-- `-t, --max-tokens INTEGER`: Set the maximum tokens in the response. Default is 2048.
-- `--help`: Display help message.
+- `CODE`: The code file to enhance. [required]
 
-#### `code-star scan`
+**Options:**
 
-Conduct a security scan on the provided code.
+- `-o, --output FILENAME`: Write the response to this file.
+- `-t, --max-tokens INTEGER`: Limit the number of tokens in the response. [Default: 2048]
+- `--help`: Display this help message and exit.
 
-**Usage**:
+#### `code-iq review`
+
+Analyze code for potential issues and adherence to coding standards.
+
+**Examples:**
+
+```bash
+code-iq review code.py
+code-iq review code.py -o code-review.md
+```
+
+**Usage:**
 
 ```console
-code-star scan [OPTIONS] CODE
+code-iq review [OPTIONS] CODE
 ```
 
-**Options**:
+**Arguments:**
 
-- `CODE`: Required file containing code to scan.
-- `-o, --output FILENAME`: Output the response to a file.
-- `-t, --max-tokens INTEGER`: Set the maximum tokens in the response. Default is 2048.
-- `--help`: Display help message.
+- `CODE`: The code file to review. [required]
 
-#### `code-star test`
+**Options:**
 
-Generate tests for the provided code.
+- `-o, --output FILENAME`: Write the response to this file.
+- `-t, --max-tokens INTEGER`: Limit the number of tokens in the response. [Default: 2048]
+- `--help`: Display this help message and exit.
 
-**Usage**:
+#### `code-iq scan`
+
+Identify vulnerabilities, bugs, or areas for improvement within codebases.
+
+**Examples:**
+
+```bash
+code-iq scan code.py
+code-iq scan code.py -o code-scan.md
+```
+
+**Usage:**
 
 ```console
-code-star test [OPTIONS] CODE
+code-iq scan [OPTIONS] CODE
 ```
 
-**Options**:
+**Arguments:**
 
-- `CODE`: Required file containing code to generate tests for.
-- `-o, --output FILENAME`: Output the response to a file.
-- `-t, --max-tokens INTEGER`: Set the maximum tokens in the response. Default is 2048.
-- `--help`: Display help message.
+- `CODE`: The code file to scan. [required]
 
-## Contributing
+**Options:**
 
-We welcome contributions to improve CodeStar CLI. Please refer to our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
-
-## Code of Conduct
-
-This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
-
-## Contact
-
-For any questions or support, please contact us at [Github](https://github.com/youzarsiph/code-star-cli).
-
-## License
-
-CodeStar CLI is distributed under the MIT License.
+- `-o, --output FILENAME`: Write the response to this file.
+- `-t, --max-tokens INTEGER`: Limit the number

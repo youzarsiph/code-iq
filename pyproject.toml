@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "code-star-cli"
+name = "code-iq"
 version = "0.2.4"
-description = "CodeStar is an advanced AI-powered coding assistant designed to enhance developer productivity by providing intelligent code suggestions and natural language interactions. Built on Hugging Face's StarCoder 2 (15B) and StarChat 2 15B."
+description = "CodeIQ is an advanced AI-powered coding assistant designed to enhance developer productivity by providing intelligent code suggestions and natural language interactions. Built on Hugging Face's StarCoder 2 (15B) and StarChat 2 15B."
 authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/youzarsiph/code-star-cli"
-repository = "https://github.com/youzarsiph/code-star-cli"
-packages = [{include = "code_star_cli"}]
+homepage = "https://github.com/youzarsiph/code-iq"
+repository = "https://github.com/youzarsiph/code-iq"
+packages = [{include = "code_iq"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -19,7 +19,7 @@ black = "^24.8.0"
 ruff = "^0.5.7"
 
 [tool.poetry.scripts]
-code-star = "code_star_cli.main:code_star"
+code-iq = "code_iq.main:code_iq"
 
 [build-system]
 requires = ["poetry-core"]

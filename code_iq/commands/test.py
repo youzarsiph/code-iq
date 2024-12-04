@@ -1,16 +1,16 @@
-""" Perform code reviews using CodeStar """
+""" CodeIQ test command """
 
 from typing import Annotated, Optional
 import typer
 from huggingface_hub import InferenceClient
 from rich import print
-from code_star_cli import CHAT_LLM, SYSTEM_MESSAGE, create_panel
+from code_iq import CHAT_LLM, SYSTEM_MESSAGE, create_panel
 
 
-def review(
+def test(
     code: Annotated[
         typer.FileText,
-        typer.Argument(help="File containing code to review for quality improvements."),
+        typer.Argument(help="File containing code to generate tests for."),
     ],
     output: Annotated[
         Optional[typer.FileTextWrite],
@@ -31,13 +31,13 @@ def review(
     ] = 2048,
 ) -> None:
     """
-    Perform code reviews to analyze code quality and adherence to best practices,
-    to provide developers with suggestions for improvement
+    Facilitates the creation, execution, and management of tests, including unit tests, integration tests,
+    and end-to-end tests to ensure code reliability.
 
     Examples:
     ```shell
-    code-star review code.py
-    code-star review code.py -o code-review.md
+    code-iq test code.py
+    code-iq test code.py -o code-tests.md
     ```
     """
 
@@ -49,11 +49,13 @@ def review(
                 SYSTEM_MESSAGE,
                 {
                     "role": "user",
-                    "content": "As a an expert software engineer and site reliability engineer "
+                    "content": "As a an expert software engineer and quality assurance engineer "
                     "that puts code into production in large scale systems. Your job is to ensure "
-                    "that code runs effectively, quickly, at scale, and securely. Please review and "
-                    "analyze code quality and adherence to best practices, providing developers with "
-                    f"suggestions for improvement:\n{code.read()}",
+                    "that code runs effectively, quickly, at scale, and securely. Please generate tests "
+                    "for the provided code, including any potential issues or improvements that could be made, "
+                    "and provide the updated code with the tests included. The tests should cover edge cases, "
+                    "error handling, and any other relevant information that could help with the code's functionality:"
+                    f"{code.read()}",
                 },
             ],
             max_tokens=max_tokens,
@@ -66,7 +68,7 @@ def review(
             print(f"Output [bold green]saved[/bold green] to {output.name}.")
 
         else:
-            print(create_panel("CodeStar", str(response.choices[0].message.content)))
+            print(create_panel("CodeIQ", str(response.choices[0].message.content)))
 
     except Exception as error:
         print(f"[bold red]Error[/bold red]: {error}")

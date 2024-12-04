@@ -1,10 +1,10 @@
-# Contributing to CodeStar CLI
+# Contributing to CodeIQ
 
-Thank you for your interest in contributing to CodeStar CLI! We welcome contributions from the community to help us build and improve this powerful tool. To make the process smooth for everyone involved, please follow the guidelines below.
+Thank you for your interest in contributing to CodeIQ! We welcome contributions from the community to help us build and improve this powerful tool. To make the process smooth for everyone involved, please follow the guidelines below.
 
 ## Table of Contents
 
-- [Contributing to CodeStar CLI](#contributing-to-codestar-cli)
+- [Contributing to CodeIQ](#contributing-to-code-iq-cli)
   - [Table of Contents](#table-of-contents)
   - [Code of Conduct](#code-of-conduct)
   - [How to Contribute](#how-to-contribute)
@@ -33,7 +33,7 @@ We expect all contributors to adhere to the [Contributor Covenant Code of Conduc
 
 ### Filing Issues
 
-If you encounter any bugs or have any questions related to CodeStar CLI, please file an issue on our [GitHub Issues page](https://github.com/youzarsiph/code-star-cli/issues). When filing an issue, please provide detailed information such as:
+If you encounter any bugs or have any questions related to CodeIQ, please file an issue on our [GitHub Issues page](https://github.com/youzarsiph/code-iq/issues). When filing an issue, please provide detailed information such as:
 
 - A clear and concise description of the problem.
 - Steps to reproduce the issue.
@@ -43,7 +43,7 @@ If you encounter any bugs or have any questions related to CodeStar CLI, please 
 
 ### Feature Requests
 
-If you have ideas for new features or improvements, please submit a feature request on our [GitHub Issues page](https://github.com/youzarsiph/code-star-cli/issues/new/choose). When making a feature request, please ensure that it aligns with the goals of the project and includes the following information:
+If you have ideas for new features or improvements, please submit a feature request on our [GitHub Issues page](https://github.com/youzarsiph/code-iq/issues/new/choose). When making a feature request, please ensure that it aligns with the goals of the project and includes the following information:
 
 - A brief description of the feature.
 - How the feature would improve the project.
@@ -73,16 +73,16 @@ Before setting up the development environment, make sure you have the following 
 
 ### Cloning the Repository
 
-To clone the CodeStar CLI repository, run the following command:
+To clone the CodeIQ repository, run the following command:
 
 ```bash
-git clone https://github.com/youzarsiph/code-star-cli.git
+git clone https://github.com/youzarsiph/code-iq.git
 ```
 
 Navigate to the cloned directory:
 
 ```bash
-cd code-star-cli
+cd code-iq
 ```
 
 ### Setting Up a Virtual Environment
@@ -163,4 +163,4 @@ Address all warnings and errors reported by Ruff.
 - Engage in constructive discussions and provide thoughtful feedback.
 - Help answer questions and contribute to resolving issues.
 
-By following these guidelines, you can make meaningful contributions to CodeStar CLI and help us deliver a better tool for developers. Thank you for your contributions!
+By following these guidelines, you can make meaningful contributions to CodeIQ and help us deliver a better tool for developers. Thank you for your contributions!
